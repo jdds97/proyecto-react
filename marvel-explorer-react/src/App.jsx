@@ -7,10 +7,10 @@ import { useState } from "react";
 
 function App() {
   //Hooks para personaje
-  // const [id, setId] = useState("");
-  // const [nombre, setNombrePersonaje] = useState("");
-  // const [imagen, setImagen] = useState("");
-  // const [descripcion, setDescripcion] = useState("");
+  const [id, setId] = useState("");
+  const [nombre, setNombrePersonaje] = useState("");
+  const [imagen, setImagen] = useState("");
+  const [descripcion, setDescripcion] = useState("");
   // //Hooks para comics
   const [nombreComic, setNombreComic] = useState("");
   const [sinopsis, setSinopsis] = useState("");
@@ -18,25 +18,30 @@ function App() {
   const [imagenComic, setImagenComic] = useState("");
   const [fechaLanzamiento, setFechaLanzamiento] = useState("");
   //Hooks para visibilidad de las cards
-  // const [cardVisiblePersonaje, setCardVisiblePersonaje] = useState(false);
+  const [cardVisiblePersonaje, setCardVisiblePersonaje] = useState(false);
   const [cardVisibleComic, setCardVisibleComic] = useState(false);
 
-  // function obtenerDatosPersonaje(personaje) {
-  //   console.log(personaje.name);
-  //   setNombrePersonaje(personaje.name);
-  //   let imagenUrl =
-  //     personaje.thumbnail.path + "." + personaje.thumbnail.extension;
-  //   setImagen(imagenUrl);
-  //   if (personaje.description) {
-  //     setDescripcion(personaje.description);
-  //   } else {
-  //     setDescripcion("El personaje no tiene descripcion");
-  //   }
-  //   setId(personaje.id);
-  //   setCardVisiblePersonaje(true);
-  // }
+  function obtenerDatosPersonaje(personaje) {
+    if (!personaje || !personaje.name || !personaje.thumbnail) {
+      return;
+    }
+    setNombrePersonaje(personaje.name);
+    let imagenUrl =
+      personaje.thumbnail.path + "." + personaje.thumbnail.extension;
+    setImagen(imagenUrl);
+    if (personaje.description) {
+      setDescripcion(personaje.description);
+    } else {
+      setDescripcion("El personaje no tiene descripcion");
+    }
+    setId(personaje.id);
+    setCardVisiblePersonaje(true);
+  }
 
   function obtenerDatosComic(comic) {
+    if (!comic || !comic.title || !comic.thumbnail || !comic.creators) {
+      return;
+    }
     let imagenUrl = comic.thumbnail.path + "." + comic.thumbnail.extension;
     let creadores = comic.creators.items.map((creador) => {
       return creador.name;
@@ -54,12 +59,12 @@ function App() {
     setCardVisibleComic(true);
   }
   function handleSearch(datos) {
-    obtenerDatosComic(datos);
+    obtenerDatosPersonaje(datos);
     obtenerDatosComic(datos);
   }
 
   function handleClear() {
-    // setCardVisiblePersonaje(false);
+    setCardVisiblePersonaje(false);
     setCardVisibleComic(false);
   }
   return (
@@ -71,7 +76,7 @@ function App() {
       </a>
 
       <SearchBar onSearch={handleSearch} onReset={handleClear} />
-      {/* {cardVisiblePersonaje ? (
+      {cardVisiblePersonaje ? (
         <Card
           nombre={nombre}
           imagen={imagen}
@@ -80,7 +85,7 @@ function App() {
         />
       ) : (
         <></>
-      )} */}
+      )}
       {cardVisibleComic ? (
         <Card
           nombre={nombreComic}
