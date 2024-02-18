@@ -1,0 +1,72 @@
+/* Estilos para el contenedor principal */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem; /* Reducido el padding */
+  text-align: center;
+}
+
+/* Estilos para el logo de Marvel */
+.logoMarvel {
+  font-size: 200px;
+  color: #ed1d24;
+}
+
+/* Estilos para el título del buscador */
+.tituloBuscador {
+  font-size: 100px;
+  color: aliceblue;
+}
+
+/* Estilos para el logo animado */
+.logo {
+  height: 200px;
+  width: 200px;
+  animation: logo-spin infinite 20s linear;
+  margin: 0 auto;
+}
+
+/* Estilos de animación para el logo */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Estilos generales para las tarjetas */
+.card {
+  padding: 2em;
+}
+
+/* Estilos para el texto de documentación */
+.read-the-docs {
+  color: #888;
+}
+
+/* Estilos para el contenedor del input y botones */
+.search-container {
+  margin-top: 1rem;
+}
+
+/* Estilos para el input de búsqueda */
+#searchInput {
+  width: 300px;
+  padding: 0.5rem;
+  font-size: 16px;
+}
+
+/* Estilos para el contenedor de los botones */
+.button-container {
+  margin-top: 1rem;
+}
+
+/* Estilos para los botones */
+.search-button,
+.clear-button {
+  padding: 0.5rem 1rem;
+  font-size: 16px;
+  margin: 0 0.5rem;
+}
